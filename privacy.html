@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kebijakan Privasi — Utangin</title>
+<style>
+  :root {
+    --primary: #0EA5E9;
+    --text: #0F172A;
+    --muted: #475569;
+    --bg: #F8FAFC;
+    --surface: #FFFFFF;
+    --border: #E2E8F0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    margin: 0;
+    line-height: 1.65;
+    font-size: 16px;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+  }
+  header {
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+  }
+  h1 {
+    font-size: 28px;
+    margin: 0 0 6px;
+    color: var(--primary);
+  }
+  header .meta {
+    color: var(--muted);
+    font-size: 14px;
+  }
+  h2 {
+    font-size: 20px;
+    margin-top: 32px;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  p, li { color: var(--text); }
+  ul { padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  .note {
+    background: var(--surface);
+    border-left: 4px solid var(--primary);
+    padding: 12px 16px;
+    margin: 16px 0;
+    border-radius: 4px;
+  }
+  a { color: var(--primary); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  footer {
+    margin-top: 56px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Kebijakan Privasi</h1>
+  <div class="meta">Aplikasi: <strong>Utangin — Catatan Hutang &amp; Piutang</strong><br>
+    Berlaku sejak: 29 April 2026 &nbsp;·&nbsp; Versi: 1.0</div>
+</header>
+
+<p>Privasi Anda adalah prioritas kami. Halaman ini menjelaskan data apa saja
+yang dikumpulkan oleh aplikasi <strong>Utangin</strong>, bagaimana data
+tersebut digunakan, disimpan, dan hak Anda atas data tersebut.</p>
+
+<div class="note">
+  <strong>Ringkasan singkat:</strong> Utangin menyimpan seluruh data hutang,
+  piutang, dan kontak Anda <em>hanya di perangkat ini</em>. Kami tidak
+  memiliki server, tidak mengirim data Anda ke pihak mana pun, dan tidak
+  bisa melihat isi catatan Anda. Satu-satunya data yang berinteraksi dengan
+  pihak ketiga adalah identifikasi iklan oleh Google AdMob.
+</div>
+
+<h2>1. Data yang Disimpan di Perangkat Anda</h2>
+<p>Data berikut Anda masukkan sendiri ke aplikasi dan disimpan
+secara lokal di memori internal perangkat Anda:</p>
+<ul>
+  <li>Nama dan nomor telepon kontak yang Anda tambahkan</li>
+  <li>Catatan transaksi hutang/piutang (nominal, tanggal, kategori, catatan)</li>
+  <li>Foto bukti pembayaran atau lampiran yang Anda unggah</li>
+  <li>PIN aplikasi (terenkripsi melalui flutter_secure_storage / Android
+    Keystore)</li>
+  <li>Pengaturan aplikasi (tema, bahasa, jadwal pengingat, dsb.)</li>
+</ul>
+<p>Data ini <strong>tidak pernah dikirim keluar dari perangkat Anda</strong>.
+Anda dapat menghapus seluruh data kapan saja melalui menu
+<em>Pengaturan → Hapus Semua Data</em>, atau dengan meng-uninstall aplikasi.</p>
+
+<h2>2. Izin Perangkat yang Digunakan</h2>
+<ul>
+  <li><strong>Kamera</strong> — untuk mengambil foto bukti pembayaran.
+    Foto disimpan lokal, tidak diunggah ke mana pun.</li>
+  <li><strong>Galeri / Media Foto</strong> — untuk memilih foto bukti dari
+    galeri Anda.</li>
+  <li><strong>Kontak</strong> — opsional, hanya saat Anda menekan tombol
+    "Import dari Kontak HP". Kami hanya membaca nama dan nomor; tidak
+    mengirim daftar kontak ke server.</li>
+  <li><strong>Notifikasi</strong> — untuk menampilkan pengingat jatuh
+    tempo hutang/piutang.</li>
+  <li><strong>Alarm Tepat Waktu</strong> — agar pengingat muncul tepat
+    pada waktu yang Anda atur.</li>
+  <li><strong>Biometrik / Sidik Jari</strong> — opsional, untuk membuka
+    kunci aplikasi. Data biometrik tidak pernah dibaca atau disimpan oleh
+    aplikasi; verifikasi dilakukan oleh sistem operasi Android.</li>
+  <li><strong>Internet</strong> — hanya untuk menampilkan iklan dan
+    memproses pembelian premium melalui Google Play.</li>
+  <li><strong>Vibrate</strong> — untuk umpan balik haptic ringan saat
+    interaksi tertentu.</li>
+</ul>
+
+<h2>3. Iklan (Google AdMob)</h2>
+<p>Aplikasi versi gratis menampilkan iklan dari layanan Google AdMob.
+Untuk menampilkan iklan yang relevan, Google AdMob dapat mengakses:</p>
+<ul>
+  <li>ID iklan (Advertising ID) perangkat Anda</li>
+  <li>Alamat IP perangkat</li>
+  <li>Interaksi Anda dengan iklan (klik, tampilan)</li>
+</ul>
+<p>Saat pertama kali menjalankan aplikasi, Anda akan diminta persetujuan
+melalui Google User Messaging Platform (UMP). Jika Anda tidak setuju
+dengan iklan personal, AdMob akan menampilkan iklan non-personal sebagai
+gantinya.</p>
+<p>Untuk informasi lebih lanjut, silakan baca
+<a href="https://policies.google.com/privacy" target="_blank">Kebijakan
+Privasi Google</a>.</p>
+<p>Anda dapat menghilangkan seluruh iklan secara permanen dengan
+membeli <em>Utangin Premium</em> melalui Google Play.</p>
+
+<h2>4. Pembelian dalam Aplikasi (Google Play Billing)</h2>
+<p>Pembelian premium diproses oleh Google Play. Kami tidak menerima atau
+menyimpan data kartu kredit / metode pembayaran Anda. Yang aplikasi terima
+hanyalah konfirmasi bahwa pembelian berhasil. Untuk pertanyaan terkait
+pembayaran, refund, atau langganan, silakan hubungi
+<a href="https://support.google.com/googleplay" target="_blank">Dukungan
+Google Play</a>.</p>
+
+<h2>5. Cadangan Data</h2>
+<p>Aplikasi menyediakan fitur ekspor data dalam format JSON. File hasil
+ekspor disimpan di folder lokal perangkat Anda dan hanya dibagikan ke
+aplikasi lain (misalnya WhatsApp atau Drive) jika Anda secara eksplisit
+menekan tombol "Bagikan". Kami tidak melakukan pencadangan otomatis ke
+server eksternal.</p>
+
+<h2>6. Anak-Anak</h2>
+<p>Aplikasi ini ditujukan untuk pengguna berusia 13 tahun ke atas. Kami
+tidak secara sadar mengumpulkan informasi pribadi dari anak-anak di bawah
+usia 13 tahun. Jika Anda yakin anak Anda telah memberikan informasi pribadi
+kepada kami, mohon hubungi kami untuk segera dihapus.</p>
+
+<h2>7. Perubahan Kebijakan</h2>
+<p>Kebijakan privasi ini dapat diperbarui sewaktu-waktu. Versi terbaru
+selalu tersedia di halaman ini. Tanggal "Berlaku sejak" di atas akan
+diperbarui jika ada perubahan substansial.</p>
+
+<h2>8. Kontak</h2>
+<p>Jika Anda memiliki pertanyaan, keberatan, atau permintaan terkait data
+pribadi Anda, silakan hubungi kami:</p>
+<ul>
+  <li>Email: <a href="mailto:support@utangin.app">support@utangin.app</a></li>
+</ul>
+
+<footer>
+  © 2026 Utangin. Hak cipta dilindungi.
+  &nbsp;·&nbsp;
+  <a href="terms.html">Syarat &amp; Ketentuan</a>
+</footer>
+
+</div>
+</body>
+</html>
