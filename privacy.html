@@ -4,186 +4,799 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kebijakan Privasi — Utangin</title>
+<meta name="description" content="Kebijakan Privasi aplikasi Utangin — pencatat hutang & piutang offline. Data disimpan lokal di perangkat Anda, kami tidak punya server.">
+<meta name="theme-color" content="#0EA5E9">
+<meta name="robots" content="index,follow">
+
+<!-- Open Graph / sharing -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kebijakan Privasi — Utangin">
+<meta property="og:description" content="Data Anda disimpan lokal di perangkat. Kami tidak memiliki server.">
+<meta property="og:locale" content="id_ID">
+
 <style>
   :root {
     --primary: #0EA5E9;
+    --primary-dark: #0284C7;
+    --accent: #14B8A6;
     --text: #0F172A;
-    --muted: #475569;
+    --text-soft: #334155;
+    --muted: #64748B;
     --bg: #F8FAFC;
     --surface: #FFFFFF;
+    --surface-2: #F1F5F9;
     --border: #E2E8F0;
+    --border-soft: #EEF2F6;
+    --shadow: 0 1px 2px rgba(15, 23, 42, 0.04),
+              0 8px 24px rgba(15, 23, 42, 0.06);
+    --radius: 14px;
+    --radius-lg: 20px;
   }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text: #E2E8F0;
+      --text-soft: #CBD5E1;
+      --muted: #94A3B8;
+      --bg: #0B1220;
+      --surface: #111827;
+      --surface-2: #1F2937;
+      --border: #1F2937;
+      --border-soft: #1E293B;
+      --shadow: 0 1px 2px rgba(0,0,0,0.4),
+                0 12px 32px rgba(0,0,0,0.35);
+    }
+  }
+
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       "Helvetica Neue", Arial, sans-serif;
     color: var(--text);
     background: var(--bg);
     margin: 0;
-    line-height: 1.65;
+    line-height: 1.7;
     font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
+
+  .skip {
+    position: absolute;
+    left: -9999px;
+    background: var(--primary);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-weight: 700;
+    z-index: 999;
+  }
+  .skip:focus { left: 16px; top: 16px; }
+
   .wrap {
-    max-width: 780px;
+    max-width: 820px;
     margin: 0 auto;
-    padding: 32px 20px 80px;
+    padding: 36px 22px 96px;
   }
-  header {
-    margin-bottom: 32px;
-    padding-bottom: 16px;
-    border-bottom: 2px solid var(--border);
+
+  /* HEADER */
+  header.hero {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    padding: 32px 28px 28px;
+    margin-bottom: 28px;
+    background:
+      radial-gradient(120% 100% at 0% 0%, rgba(14,165,233,0.18), transparent 55%),
+      radial-gradient(120% 100% at 100% 100%, rgba(20,184,166,0.18), transparent 55%),
+      var(--surface);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow);
   }
-  h1 {
-    font-size: 28px;
-    margin: 0 0 6px;
+  header .kicker {
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    font-size: 12px;
+    font-weight: 800;
     color: var(--primary);
+    margin: 0 0 6px;
+  }
+  header h1 {
+    font-size: clamp(26px, 4vw, 34px);
+    margin: 0 0 10px;
+    color: var(--text);
+    letter-spacing: -0.02em;
   }
   header .meta {
     color: var(--muted);
     font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    align-items: center;
   }
-  h2 {
-    font-size: 20px;
-    margin-top: 32px;
+  header .meta strong { color: var(--text-soft); }
+  header .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text-soft);
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  header .pill::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px rgba(20,184,166,0.18);
+  }
+
+  /* TLDR SUMMARY (privacy-specific) */
+  .tldr {
+    background: linear-gradient(135deg, rgba(14,165,233,0.10) 0%, rgba(20,184,166,0.10) 100%);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    margin: 0 0 28px;
+    display: grid;
+    gap: 14px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 600px) { .tldr { grid-template-columns: 1fr 1fr; } }
+  .tldr h3 {
+    margin: 0 0 4px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--primary);
+    font-weight: 800;
+  }
+  .tldr-card {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .tldr-card .icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 900;
     margin-bottom: 8px;
-    color: var(--text);
+    box-shadow: 0 4px 10px rgba(14,165,233,0.25);
   }
-  p, li { color: var(--text); }
-  ul { padding-left: 22px; }
+  .tldr-card strong { display: block; margin-bottom: 4px; color: var(--text); }
+  .tldr-card p { margin: 0; font-size: 14px; color: var(--text-soft); }
+
+  /* TOC */
+  nav.toc {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow);
+  }
+  nav.toc h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--muted);
+    margin: 0 0 12px;
+    font-weight: 800;
+  }
+  nav.toc ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  @media (min-width: 600px) {
+    nav.toc ol { grid-template-columns: 1fr 1fr; column-gap: 16px; }
+  }
+  nav.toc li { margin: 0; }
+  nav.toc a {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    color: var(--text-soft);
+    text-decoration: none;
+    font-size: 14.5px;
+    transition: background 0.15s, color 0.15s;
+  }
+  nav.toc a:hover,
+  nav.toc a:focus-visible {
+    background: var(--surface-2);
+    color: var(--primary);
+    outline: none;
+  }
+  nav.toc .toc-num {
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    min-width: 18px;
+  }
+
+  /* SECTIONS */
+  section.tos {
+    margin-top: 36px;
+    scroll-margin-top: 20px;
+  }
+  section.tos h2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 20px;
+    margin: 0 0 12px;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  section.tos h2 .num {
+    flex: 0 0 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    box-shadow: 0 4px 12px rgba(14,165,233,0.30);
+  }
+  section.tos h2 .anchor {
+    margin-left: auto;
+    opacity: 0;
+    color: var(--muted);
+    font-size: 14px;
+    text-decoration: none;
+    transition: opacity 0.15s, color 0.15s;
+  }
+  section.tos h2:hover .anchor { opacity: 1; }
+  section.tos h2 .anchor:hover { color: var(--primary); }
+
+  p, li { color: var(--text-soft); }
+  p { margin: 0 0 12px; }
+  ul, ol { padding-left: 22px; margin: 0 0 14px; }
   li { margin-bottom: 6px; }
+  strong { color: var(--text); }
+  code {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    border-radius: 6px;
+    font-size: 13.5px;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  /* DATA TABLE */
+  .data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 12px 0 18px;
+    font-size: 14.5px;
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .data-table th, .data-table td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-soft);
+    vertical-align: top;
+  }
+  .data-table th {
+    background: var(--surface-2);
+    color: var(--text-soft);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 800;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table td .yes { color: #059669; font-weight: 800; }
+  .data-table td .no  { color: #DC2626; font-weight: 800; }
+
+  /* CALLOUT */
   .note {
     background: var(--surface);
+    border: 1px solid var(--border-soft);
     border-left: 4px solid var(--primary);
-    padding: 12px 16px;
+    padding: 14px 18px;
     margin: 16px 0;
-    border-radius: 4px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
   }
+  .note.warn   { border-left-color: #F59E0B; }
+  .note.warn::before   { content: "⚠️ "; }
+  .note.legal  { border-left-color: #6366F1; }
+  .note.legal::before  { content: "⚖️ "; }
+  .note.good   { border-left-color: #059669; }
+  .note.good::before   { content: "✅ "; }
+  .note p:last-child { margin-bottom: 0; }
+
   a { color: var(--primary); text-decoration: none; }
   a:hover { text-decoration: underline; }
+  a:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
   footer {
-    margin-top: 56px;
-    padding-top: 16px;
+    margin-top: 64px;
+    padding-top: 24px;
     border-top: 1px solid var(--border);
     color: var(--muted);
     font-size: 13px;
     text-align: center;
+    line-height: 1.7;
+  }
+  footer .links { margin-bottom: 8px; }
+  footer .links a { margin: 0 8px; font-weight: 700; }
+  footer .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 800;
+    color: var(--text-soft);
+    margin-bottom: 4px;
+  }
+  footer .brand .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 0 0 3px rgba(14,165,233,0.20);
+  }
+
+  @media print {
+    body { background: #fff; color: #000; font-size: 11pt; }
+    header.hero, nav.toc, .note, .tldr, .tldr-card, .data-table {
+      box-shadow: none;
+      border: 1px solid #ccc;
+      background: #fff;
+    }
+    section.tos h2 .num,
+    .tldr-card .icon {
+      background: #fff !important;
+      color: #000 !important;
+      border: 1px solid #000;
+      box-shadow: none;
+    }
+    section.tos h2 .anchor, .skip { display: none; }
+    a { color: #000; text-decoration: underline; }
   }
 </style>
 </head>
 <body>
+
+<a class="skip" href="#main">Lewati ke konten</a>
+
 <div class="wrap">
 
-<header>
-  <h1>Kebijakan Privasi</h1>
-  <div class="meta">Aplikasi: <strong>Utangin — Catatan Hutang &amp; Piutang</strong><br>
-    Berlaku sejak: 29 April 2026 &nbsp;·&nbsp; Versi: 1.0</div>
-</header>
+  <header class="hero">
+    <p class="kicker">Dokumen Legal</p>
+    <h1>Kebijakan Privasi</h1>
+    <div class="meta">
+      <span><strong>Utangin</strong> — Catatan Hutang &amp; Piutang</span>
+      <span>Berlaku sejak 26 Mei 2026</span>
+      <span class="pill">Versi dokumen 1.1</span>
+    </div>
+  </header>
 
-<p>Privasi Anda adalah prioritas kami. Halaman ini menjelaskan data apa saja
-yang dikumpulkan oleh aplikasi <strong>Utangin</strong>, bagaimana data
-tersebut digunakan, disimpan, dan hak Anda atas data tersebut.</p>
+  <p>
+    Privasi Anda adalah prioritas kami. Halaman ini menjelaskan secara
+    jujur dan rinci data apa saja yang dikumpulkan oleh aplikasi
+    <strong>Utangin</strong>, bagaimana data tersebut digunakan, di mana
+    disimpan, dan hak Anda atas data tersebut sesuai
+    <strong>Undang-Undang Pelindungan Data Pribadi
+    (UU&nbsp;PDP) No.&nbsp;27/2022</strong>.
+  </p>
 
-<div class="note">
-  <strong>Ringkasan singkat:</strong> Utangin menyimpan seluruh data hutang,
-  piutang, dan kontak Anda <em>hanya di perangkat ini</em>. Kami tidak
-  memiliki server, tidak mengirim data Anda ke pihak mana pun, dan tidak
-  bisa melihat isi catatan Anda. Satu-satunya data yang berinteraksi dengan
-  pihak ketiga adalah identifikasi iklan oleh Google AdMob.
-</div>
+  <div class="tldr">
+    <div class="tldr-card">
+      <div class="icon">📵</div>
+      <strong>Offline 100%</strong>
+      <p>Catatan hutang, piutang, kontak, foto, dan pengaturan disimpan
+        eksklusif di SQLite lokal perangkat Anda.</p>
+    </div>
+    <div class="tldr-card">
+      <div class="icon">🚫</div>
+      <strong>Tidak Ada Server</strong>
+      <p>Kami tidak punya backend. Tidak ada cloud sync, tidak ada akun,
+        tidak ada data finansial yang kami kirim ke mana pun.</p>
+    </div>
+    <div class="tldr-card">
+      <div class="icon">📢</div>
+      <strong>Hanya Iklan AdMob</strong>
+      <p>Pihak ketiga yang mengakses data hanyalah Google AdMob
+        (Advertising ID + lokasi perkiraan dari IP).</p>
+    </div>
+    <div class="tldr-card">
+      <div class="icon">🗑️</div>
+      <strong>Hapus Kapan Saja</strong>
+      <p>Setelan → <em>Hapus Semua Data</em> menghapus seluruh data lokal
+        dalam sekali ketuk.</p>
+    </div>
+  </div>
 
-<h2>1. Data yang Disimpan di Perangkat Anda</h2>
-<p>Data berikut Anda masukkan sendiri ke aplikasi dan disimpan
-secara lokal di memori internal perangkat Anda:</p>
-<ul>
-  <li>Nama dan nomor telepon kontak yang Anda tambahkan</li>
-  <li>Catatan transaksi hutang/piutang (nominal, tanggal, kategori, catatan)</li>
-  <li>Foto bukti pembayaran atau lampiran yang Anda unggah</li>
-  <li>PIN aplikasi (terenkripsi melalui flutter_secure_storage / Android
-    Keystore)</li>
-  <li>Pengaturan aplikasi (tema, bahasa, jadwal pengingat, dsb.)</li>
-</ul>
-<p>Data ini <strong>tidak pernah dikirim keluar dari perangkat Anda</strong>.
-Anda dapat menghapus seluruh data kapan saja melalui menu
-<em>Pengaturan → Hapus Semua Data</em>, atau dengan meng-uninstall aplikasi.</p>
+  <nav class="toc" aria-label="Daftar Isi">
+    <h2>Daftar Isi</h2>
+    <ol>
+      <li><a href="#s1"><span class="toc-num">1.</span>Data yang Disimpan di Perangkat Anda</a></li>
+      <li><a href="#s2"><span class="toc-num">2.</span>Data yang Dikumpulkan Pihak Ketiga</a></li>
+      <li><a href="#s3"><span class="toc-num">3.</span>Izin Perangkat &amp; Penggunaannya</a></li>
+      <li><a href="#s4"><span class="toc-num">4.</span>Iklan &amp; Persetujuan (AdMob &amp; UMP)</a></li>
+      <li><a href="#s5"><span class="toc-num">5.</span>Pembelian Premium (Google Play Billing)</a></li>
+      <li><a href="#s6"><span class="toc-num">6.</span>Cadangan &amp; Ekspor Data</a></li>
+      <li><a href="#s7"><span class="toc-num">7.</span>Penyimpanan, Retensi &amp; Penghapusan</a></li>
+      <li><a href="#s8"><span class="toc-num">8.</span>Hak Anda atas Data Pribadi</a></li>
+      <li><a href="#s9"><span class="toc-num">9.</span>Keamanan Data</a></li>
+      <li><a href="#s10"><span class="toc-num">10.</span>Anak-anak</a></li>
+      <li><a href="#s11"><span class="toc-num">11.</span>Perubahan Kebijakan</a></li>
+      <li><a href="#s12"><span class="toc-num">12.</span>Kontak &amp; Pengaduan</a></li>
+    </ol>
+  </nav>
 
-<h2>2. Izin Perangkat yang Digunakan</h2>
-<ul>
-  <li><strong>Kamera</strong> — untuk mengambil foto bukti pembayaran.
-    Foto disimpan lokal, tidak diunggah ke mana pun.</li>
-  <li><strong>Galeri / Media Foto</strong> — untuk memilih foto bukti dari
-    galeri Anda.</li>
-  <li><strong>Kontak</strong> — opsional, hanya saat Anda menekan tombol
-    "Import dari Kontak HP". Kami hanya membaca nama dan nomor; tidak
-    mengirim daftar kontak ke server.</li>
-  <li><strong>Notifikasi</strong> — untuk menampilkan pengingat jatuh
-    tempo hutang/piutang.</li>
-  <li><strong>Alarm Tepat Waktu</strong> — agar pengingat muncul tepat
-    pada waktu yang Anda atur.</li>
-  <li><strong>Biometrik / Sidik Jari</strong> — opsional, untuk membuka
-    kunci aplikasi. Data biometrik tidak pernah dibaca atau disimpan oleh
-    aplikasi; verifikasi dilakukan oleh sistem operasi Android.</li>
-  <li><strong>Internet</strong> — hanya untuk menampilkan iklan dan
-    memproses pembelian premium melalui Google Play.</li>
-  <li><strong>Vibrate</strong> — untuk umpan balik haptic ringan saat
-    interaksi tertentu.</li>
-</ul>
+  <main id="main">
 
-<h2>3. Iklan (Google AdMob)</h2>
-<p>Aplikasi versi gratis menampilkan iklan dari layanan Google AdMob.
-Untuk menampilkan iklan yang relevan, Google AdMob dapat mengakses:</p>
-<ul>
-  <li>ID iklan (Advertising ID) perangkat Anda</li>
-  <li>Alamat IP perangkat</li>
-  <li>Interaksi Anda dengan iklan (klik, tampilan)</li>
-</ul>
-<p>Saat pertama kali menjalankan aplikasi, Anda akan diminta persetujuan
-melalui Google User Messaging Platform (UMP). Jika Anda tidak setuju
-dengan iklan personal, AdMob akan menampilkan iklan non-personal sebagai
-gantinya.</p>
-<p>Untuk informasi lebih lanjut, silakan baca
-<a href="https://policies.google.com/privacy" target="_blank">Kebijakan
-Privasi Google</a>.</p>
-<p>Anda dapat menghilangkan seluruh iklan secara permanen dengan
-membeli <em>Utangin Premium</em> melalui Google Play.</p>
+    <section class="tos" id="s1">
+      <h2><span class="num">1</span>Data yang Disimpan di Perangkat Anda <a class="anchor" href="#s1" aria-label="Tautan ke bagian">¶</a></h2>
+      <p>
+        Data berikut Anda masukkan sendiri dan disimpan secara lokal di
+        memori internal perangkat Anda. Data ini
+        <strong>tidak pernah meninggalkan perangkat</strong> tanpa
+        tindakan eksplisit dari Anda (mis. menekan tombol "Bagikan").
+      </p>
+      <ul>
+        <li><strong>Catatan transaksi:</strong> nominal hutang/piutang,
+          tanggal pinjam, jatuh tempo, kategori, catatan tambahan,
+          informasi bunga, jadwal cicilan, riwayat pembayaran.</li>
+        <li><strong>Kontak:</strong> nama dan nomor telepon kontak yang
+          Anda tambahkan manual atau impor dari ponsel.</li>
+        <li><strong>Lampiran:</strong> foto bukti pembayaran/struk yang
+          Anda ambil atau pilih dari galeri.</li>
+        <li><strong>Tanda tangan digital:</strong> goresan tanda tangan
+          pada layar.</li>
+        <li><strong>PIN aplikasi:</strong> terenkripsi melalui
+          <code>flutter_secure_storage</code> yang memanfaatkan Android
+          Keystore.</li>
+        <li><strong>Pengaturan:</strong> tema, bahasa, jam pengingat,
+          mode incognito, daftar buku, dsb.</li>
+      </ul>
+      <div class="note good">
+        Tidak ada akun login, tidak ada nomor telepon Anda, tidak ada
+        email yang kami minta. Aplikasi bekerja tanpa registrasi.
+      </div>
+    </section>
 
-<h2>4. Pembelian dalam Aplikasi (Google Play Billing)</h2>
-<p>Pembelian premium diproses oleh Google Play. Kami tidak menerima atau
-menyimpan data kartu kredit / metode pembayaran Anda. Yang aplikasi terima
-hanyalah konfirmasi bahwa pembelian berhasil. Untuk pertanyaan terkait
-pembayaran, refund, atau langganan, silakan hubungi
-<a href="https://support.google.com/googleplay" target="_blank">Dukungan
-Google Play</a>.</p>
+    <section class="tos" id="s2">
+      <h2><span class="num">2</span>Data yang Dikumpulkan Pihak Ketiga <a class="anchor" href="#s2" aria-label="Tautan ke bagian">¶</a></h2>
+      <p>
+        Beberapa fitur menggunakan layanan pihak ketiga yang memiliki
+        kebijakan privasi sendiri. Berikut data yang mereka kumpulkan:
+      </p>
+      <table class="data-table" aria-label="Data dikumpulkan pihak ketiga">
+        <thead>
+          <tr>
+            <th>Layanan</th>
+            <th>Data dikumpulkan</th>
+            <th>Tujuan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Google AdMob</strong></td>
+            <td>Advertising ID, alamat IP, lokasi perkiraan (dari IP),
+              interaksi iklan, diagnostik &amp; crash log SDK</td>
+            <td>Penayangan iklan, pengukuran performa iklan, anti-fraud</td>
+          </tr>
+          <tr>
+            <td><strong>Google UMP</strong></td>
+            <td>Pilihan persetujuan iklan Anda (EEA/UK)</td>
+            <td>Memenuhi regulasi GDPR/UK ePrivacy</td>
+          </tr>
+          <tr>
+            <td><strong>Google Play Billing</strong></td>
+            <td>Riwayat pembelian, status entitlement</td>
+            <td>Memproses pembelian Premium</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        Aplikasi <strong>tidak</strong> menggunakan layanan analytics
+        (Firebase Analytics, Mixpanel, dll.) maupun layanan crash reporting
+        (Crashlytics, Sentry). Kami tidak mengetahui apa pun tentang
+        bagaimana Anda menggunakan aplikasi di luar yang dikumpulkan AdMob
+        untuk iklan.
+      </p>
+    </section>
 
-<h2>5. Cadangan Data</h2>
-<p>Aplikasi menyediakan fitur ekspor data dalam format JSON. File hasil
-ekspor disimpan di folder lokal perangkat Anda dan hanya dibagikan ke
-aplikasi lain (misalnya WhatsApp atau Drive) jika Anda secara eksplisit
-menekan tombol "Bagikan". Kami tidak melakukan pencadangan otomatis ke
-server eksternal.</p>
+    <section class="tos" id="s3">
+      <h2><span class="num">3</span>Izin Perangkat &amp; Penggunaannya <a class="anchor" href="#s3" aria-label="Tautan ke bagian">¶</a></h2>
+      <table class="data-table" aria-label="Daftar izin perangkat">
+        <thead>
+          <tr>
+            <th>Izin</th>
+            <th>Wajib?</th>
+            <th>Untuk apa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Kamera</td>
+            <td>Opsional</td>
+            <td>Mengambil foto bukti pembayaran &amp; struk. Foto
+              disimpan lokal, tidak diunggah.</td>
+          </tr>
+          <tr>
+            <td>Galeri / Photo Picker</td>
+            <td>Opsional</td>
+            <td>Memilih foto bukti dari galeri (Android 13+ pakai system
+              Photo Picker, tanpa permission penuh).</td>
+          </tr>
+          <tr>
+            <td>Kontak</td>
+            <td>Opsional</td>
+            <td>Hanya saat Anda menekan "Impor dari Kontak". Hanya nama
+              &amp; nomor yang dibaca; tidak ada sinkronisasi otomatis.</td>
+          </tr>
+          <tr>
+            <td>Notifikasi</td>
+            <td>Opsional</td>
+            <td>Menampilkan pengingat jatuh tempo dan konfirmasi
+              pembayaran.</td>
+          </tr>
+          <tr>
+            <td>Alarm Tepat Waktu</td>
+            <td>Wajib jika pengingat aktif</td>
+            <td>Memastikan pengingat muncul pada jam yang Anda atur,
+              bukan tertunda 15+ menit.</td>
+          </tr>
+          <tr>
+            <td>Boot Completed</td>
+            <td>Wajib jika pengingat aktif</td>
+            <td>Menjadwalkan ulang notifikasi setelah perangkat di-restart
+              agar reminder tidak hilang.</td>
+          </tr>
+          <tr>
+            <td>Biometrik / Sidik Jari</td>
+            <td>Opsional</td>
+            <td>Membuka kunci aplikasi. Data biometrik tidak dibaca atau
+              disimpan aplikasi — verifikasi dilakukan oleh Android.</td>
+          </tr>
+          <tr>
+            <td>Internet</td>
+            <td>Wajib</td>
+            <td>Menampilkan iklan &amp; memproses pembelian premium via
+              Google Play.</td>
+          </tr>
+          <tr>
+            <td>Vibrate</td>
+            <td>Opsional</td>
+            <td>Umpan balik haptic ringan saat interaksi tertentu.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        Anda dapat menolak atau mencabut izin opsional kapan saja melalui
+        <em>Setelan Android → Aplikasi → Utangin → Izin</em>. Fitur yang
+        membutuhkan izin akan otomatis nonaktif jika izin dicabut.
+      </p>
+    </section>
 
-<h2>6. Anak-Anak</h2>
-<p>Aplikasi ini ditujukan untuk pengguna berusia 13 tahun ke atas. Kami
-tidak secara sadar mengumpulkan informasi pribadi dari anak-anak di bawah
-usia 13 tahun. Jika Anda yakin anak Anda telah memberikan informasi pribadi
-kepada kami, mohon hubungi kami untuk segera dihapus.</p>
+    <section class="tos" id="s4">
+      <h2><span class="num">4</span>Iklan &amp; Persetujuan <a class="anchor" href="#s4" aria-label="Tautan ke bagian">¶</a></h2>
+      <p>
+        Versi gratis menampilkan iklan dari <strong>Google AdMob</strong>
+        dalam bentuk <em>banner</em>, <em>interstitial</em>, atau
+        <em>app open</em>. Saat pertama kali aplikasi dijalankan, kami
+        memanggil <strong>Google User Messaging Platform (UMP)</strong>
+        untuk menangani persetujuan iklan personal — terutama untuk
+        pengguna di wilayah EEA, UK, atau yurisdiksi lain yang menerapkan
+        regulasi serupa.
+      </p>
+      <p>Anda dapat mengelola preferensi iklan kapan saja melalui:</p>
+      <ul>
+        <li>Setelan Android → Google → Iklan → <em>Hapus iklan
+          personal</em></li>
+        <li>Setel ulang Advertising ID untuk memutus profil iklan</li>
+        <li>Membeli <em>Utangin Premium</em> untuk menghilangkan seluruh
+          iklan secara permanen</li>
+      </ul>
+      <p>
+        Untuk detail kebijakan AdMob, baca
+        <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Kebijakan Iklan Google</a>
+        dan
+        <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Kebijakan Privasi Google</a>.
+      </p>
+    </section>
 
-<h2>7. Perubahan Kebijakan</h2>
-<p>Kebijakan privasi ini dapat diperbarui sewaktu-waktu. Versi terbaru
-selalu tersedia di halaman ini. Tanggal "Berlaku sejak" di atas akan
-diperbarui jika ada perubahan substansial.</p>
+    <section class="tos" id="s5">
+      <h2><span class="num">5</span>Pembelian Premium (Google Play Billing) <a class="anchor" href="#s5" aria-label="Tautan ke bagian">¶</a></h2>
+      <p>
+        Pembelian Premium diproses sepenuhnya oleh Google Play. Kami
+        <strong>tidak menerima, menyimpan, atau memproses</strong> data
+        kartu kredit, rekening bank, atau metode pembayaran lainnya. Yang
+        aplikasi terima dari Google hanya konfirmasi status entitlement
+        ("premium aktif" / "tidak aktif").
+      </p>
+      <ul>
+        <li>Produk: <code>utangin_remove_ads</code> — pembelian satu kali
+          (lifetime).</li>
+        <li>Riwayat pembelian dikelola oleh akun Google Anda, bukan oleh
+          aplikasi.</li>
+        <li>Untuk pertanyaan refund/billing hubungi
+          <a href="https://support.google.com/googleplay" target="_blank" rel="noopener">Dukungan Google Play</a>.</li>
+      </ul>
+    </section>
 
-<h2>8. Kontak</h2>
-<p>Jika Anda memiliki pertanyaan, keberatan, atau permintaan terkait data
-pribadi Anda, silakan hubungi kami:</p>
-<ul>
-  <li>Email: <a href="mailto:khaerul0210@gmail.com">khaerul0210@gmail.com</a></li>
-</ul>
+    <section class="tos" id="s6">
+      <h2><span class="num">6</span>Cadangan &amp; Ekspor Data <a class="anchor" href="#s6" aria-label="Tautan ke bagian">¶</a></h2>
+      <p>
+        Aplikasi menyediakan fitur ekspor data dalam format JSON, CSV, dan
+        PDF. File hasil ekspor disimpan di folder lokal perangkat Anda. File
+        baru dibagikan ke aplikasi lain (mis. WhatsApp, Drive, Email) hanya
+        ketika Anda <strong>secara eksplisit</strong> menekan tombol
+        "Bagikan".
+      </p>
+      <div class="note warn">
+        Kami <strong>tidak</strong> melakukan pencadangan otomatis ke
+        cloud. Jika perangkat Anda rusak atau hilang, data tidak dapat
+        kami pulihkan. Pastikan untuk membuat backup berkala dan
+        menyimpannya di tempat aman.
+      </div>
+    </section>
 
-<footer>
-  © 2026 Utangin. Hak cipta dilindungi.
-  &nbsp;·&nbsp;
-  <a href="terms.html">Syarat &amp; Ketentuan</a>
-</footer>
+    <section class="tos" id="s7">
+      <h2><span class="num">7</span>Penyimpanan, Retensi &amp; Penghapusan <a class="anchor" href="#s7" aria-label="Tautan ke bagian">¶</a></h2>
+      <p>
+        Data lokal Anda disimpan selama aplikasi terpasang. Tidak ada
+        kebijakan retensi otomatis — kami tidak akan menghapus data Anda
+        tanpa instruksi eksplisit dari Anda.
+      </p>
+      <p>Anda dapat menghapus data dengan tiga cara:</p>
+      <ul>
+        <li><strong>Hapus selektif</strong> — hapus transaksi/kontak/foto
+          satu per satu dari dalam aplikasi.</li>
+        <li><strong>Hapus semua data</strong> — Setelan →
+          <em>Hapus Semua Data</em> akan menghapus seluruh database SQLite
+          dalam sekali ketuk (tidak bisa di-undo).</li>
+        <li><strong>Uninstall aplikasi</strong> — Android akan menghapus
+          seluruh data privat aplikasi termasuk SQLite, SharedPreferences,
+          dan cache.</li>
+      </ul>
+      <p>
+        Untuk data yang dikumpulkan AdMob, reset Advertising ID Anda di
+        <em>Setelan Android → Google → Iklan → Setel ulang ID iklan</em>.
+      </p>
+    </section>
+
+    <section class="tos" id="s8">
+      <h2><span class="num">8</span>Hak Anda atas Data Pribadi <a class="anchor" href="#s8" aria-label="Tautan ke bagian">¶</a></h2>
+      <p>
+        Sebagai pengguna di Indonesia, Anda memiliki hak-hak berikut sesuai
+        UU PDP No. 27/2022:
+      </p>
+      <ul>
+        <li><strong>Hak akses</strong> — melihat data yang Anda input
+          kapan saja melalui antarmuka aplikasi.</li>
+        <li><strong>Hak koreksi</strong> — mengubah catatan apa pun
+          langsung dari aplikasi.</li>
+        <li><strong>Hak penghapusan</strong> — menghapus selektif atau
+          menghapus seluruh data sekaligus (lihat §7).</li>
+        <li><strong>Hak portabilitas</strong> — mengekspor seluruh data
+          dalam format JSON/CSV untuk dipindahkan ke aplikasi lain.</li>
+        <li><strong>Hak menarik persetujuan</strong> — mencabut izin
+          perangkat kapan saja, atau berhenti menggunakan aplikasi.</li>
+      </ul>
+      <p>
+        Karena data Anda disimpan lokal di perangkat sendiri, sebagian
+        besar hak ini dapat Anda eksekusi mandiri tanpa perlu menghubungi
+        kami.
+      </p>
+    </section>
+
+    <section class="tos" id="s9">
+      <h2><span class="num">9</span>Keamanan Data <a class="anchor" href="#s9" aria-label="Tautan ke bagian">¶</a></h2>
+      <p>Aplikasi menerapkan langkah-langkah keamanan berikut:</p>
+      <ul>
+        <li><strong>PIN &amp; biometrik</strong> — opsional, mengunci
+          aplikasi dari mata yang tidak berkepentingan.</li>
+        <li><strong>Enkripsi PIN</strong> — disimpan via Android Keystore
+          melalui <code>flutter_secure_storage</code>, bukan plaintext.</li>
+        <li><strong>Mode Incognito</strong> — menyembunyikan nominal saldo
+          dengan satu ketuk, berguna saat layar dilihat orang lain.</li>
+        <li><strong>App-private storage</strong> — foto lampiran disimpan
+          di direktori privat aplikasi yang tidak bisa diakses aplikasi
+          lain tanpa root.</li>
+        <li><strong>HTTPS</strong> — komunikasi dengan Google AdMob &amp;
+          Play Billing menggunakan TLS terenkripsi.</li>
+        <li><strong>R8 / ProGuard</strong> — kode aplikasi dikaburkan di
+          build release agar lebih sulit di-reverse engineer.</li>
+      </ul>
+      <div class="note warn">
+        Tidak ada sistem yang 100% aman. Jika perangkat Anda dicuri atau
+        diakses orang lain dalam keadaan tidak terkunci, data lokal dapat
+        dibaca. Aktifkan kunci layar perangkat dan PIN aplikasi untuk
+        perlindungan berlapis.
+      </div>
+    </section>
+
+    <section class="tos" id="s10">
+      <h2><span class="num">10</span>Anak-anak <a class="anchor" href="#s10" aria-label="Tautan ke bagian">¶</a></h2>
+      <p>
+        Aplikasi ditujukan untuk pengguna berusia <strong>17 tahun ke
+        atas</strong>. Kami tidak secara sadar mengumpulkan data pribadi
+        dari anak di bawah usia tersebut. Jika Anda adalah orang tua atau
+        wali dan mendapati anak Anda menggunakan aplikasi tanpa
+        pengawasan, mohon hapus aplikasi dari perangkat anak dan hubungi
+        kami bila perlu.
+      </p>
+    </section>
+
+    <section class="tos" id="s11">
+      <h2><span class="num">11</span>Perubahan Kebijakan <a class="anchor" href="#s11" aria-label="Tautan ke bagian">¶</a></h2>
+      <p>
+        Kebijakan ini dapat diperbarui dari waktu ke waktu untuk mencerminkan
+        perubahan fitur, layanan pihak ketiga, atau regulasi. Versi
+        terbaru selalu tersedia di halaman ini, dan tanggal
+        "Berlaku sejak" di atas akan diperbarui setiap perubahan material.
+        Untuk perubahan yang berdampak besar pada pengguna, kami juga akan
+        menampilkan pemberitahuan dalam aplikasi.
+      </p>
+    </section>
+
+    <section class="tos" id="s12">
+      <h2><span class="num">12</span>Kontak &amp; Pengaduan <a class="anchor" href="#s12" aria-label="Tautan ke bagian">¶</a></h2>
+      <p>
+        Jika Anda memiliki pertanyaan, keberatan, permintaan akses data,
+        atau pengaduan terkait kebijakan ini, silakan hubungi:
+      </p>
+      <ul>
+        <li>Email: <a href="mailto:khaerul0210@gmail.com">khaerul0210@gmail.com</a></li>
+        <li>Mohon awali subjek email dengan <code>[Privasi]</code> agar
+          dapat diproses dengan prioritas.</li>
+      </ul>
+      <p>
+        Kami akan berupaya merespons dalam <strong>3–5 hari kerja</strong>.
+        Untuk hal yang mendesak terkait pelanggaran data, Anda juga dapat
+        mengadukan ke Kementerian Komunikasi dan Informatika Republik
+        Indonesia sebagai otoritas pengawas perlindungan data pribadi.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="brand"><span class="dot"></span>Utangin</div>
+    <div class="links">
+      <a href="index.html">Beranda</a>·
+      <a href="terms.html">Syarat &amp; Ketentuan</a>·
+      <a href="#main">Ke Atas ↑</a>
+    </div>
+    © 2026 Utangin. Hak cipta dilindungi.
+  </footer>
 
 </div>
 </body>
