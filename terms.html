@@ -4,186 +4,661 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Syarat &amp; Ketentuan — Utangin</title>
+<meta name="description" content="Syarat & Ketentuan penggunaan aplikasi Utangin — pencatat hutang dan piutang offline untuk pengguna di Indonesia.">
+<meta name="theme-color" content="#0EA5E9">
+<meta name="robots" content="index,follow">
+
+<!-- Open Graph / sharing -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Syarat & Ketentuan — Utangin">
+<meta property="og:description" content="Aturan main penggunaan aplikasi Utangin: pencatat hutang & piutang pribadi.">
+<meta property="og:locale" content="id_ID">
+
 <style>
   :root {
     --primary: #0EA5E9;
+    --primary-dark: #0284C7;
+    --accent: #14B8A6;
     --text: #0F172A;
-    --muted: #475569;
+    --text-soft: #334155;
+    --muted: #64748B;
     --bg: #F8FAFC;
     --surface: #FFFFFF;
+    --surface-2: #F1F5F9;
     --border: #E2E8F0;
+    --border-soft: #EEF2F6;
+    --shadow: 0 1px 2px rgba(15, 23, 42, 0.04),
+              0 8px 24px rgba(15, 23, 42, 0.06);
+    --radius: 14px;
+    --radius-lg: 20px;
   }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text: #E2E8F0;
+      --text-soft: #CBD5E1;
+      --muted: #94A3B8;
+      --bg: #0B1220;
+      --surface: #111827;
+      --surface-2: #1F2937;
+      --border: #1F2937;
+      --border-soft: #1E293B;
+      --shadow: 0 1px 2px rgba(0,0,0,0.4),
+                0 12px 32px rgba(0,0,0,0.35);
+    }
+  }
+
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       "Helvetica Neue", Arial, sans-serif;
     color: var(--text);
     background: var(--bg);
     margin: 0;
-    line-height: 1.65;
+    line-height: 1.7;
     font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
+
+  /* Skip link for screen readers */
+  .skip {
+    position: absolute;
+    left: -9999px;
+    background: var(--primary);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-weight: 700;
+    z-index: 999;
+  }
+  .skip:focus { left: 16px; top: 16px; }
+
   .wrap {
-    max-width: 780px;
+    max-width: 820px;
     margin: 0 auto;
-    padding: 32px 20px 80px;
+    padding: 36px 22px 96px;
   }
-  header {
-    margin-bottom: 32px;
-    padding-bottom: 16px;
-    border-bottom: 2px solid var(--border);
+
+  /* HEADER */
+  header.hero {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    padding: 32px 28px 28px;
+    margin-bottom: 28px;
+    background:
+      radial-gradient(120% 100% at 0% 0%, rgba(14,165,233,0.18), transparent 55%),
+      radial-gradient(120% 100% at 100% 100%, rgba(20,184,166,0.18), transparent 55%),
+      var(--surface);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow);
   }
-  h1 {
-    font-size: 28px;
-    margin: 0 0 6px;
+  header .kicker {
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    font-size: 12px;
+    font-weight: 800;
     color: var(--primary);
+    margin: 0 0 6px;
+  }
+  header h1 {
+    font-size: clamp(26px, 4vw, 34px);
+    margin: 0 0 10px;
+    color: var(--text);
+    letter-spacing: -0.02em;
   }
   header .meta {
     color: var(--muted);
     font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    align-items: center;
   }
-  h2 {
+  header .meta strong { color: var(--text-soft); }
+  header .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text-soft);
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  header .pill::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px rgba(20,184,166,0.18);
+  }
+
+  /* INTRO */
+  .intro {
+    font-size: 16.5px;
+    color: var(--text-soft);
+    margin: 0 0 28px;
+  }
+
+  /* TABLE OF CONTENTS */
+  nav.toc {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow);
+  }
+  nav.toc h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--muted);
+    margin: 0 0 12px;
+    font-weight: 800;
+  }
+  nav.toc ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  @media (min-width: 600px) {
+    nav.toc ol { grid-template-columns: 1fr 1fr; column-gap: 16px; }
+  }
+  nav.toc li { margin: 0; }
+  nav.toc a {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    color: var(--text-soft);
+    text-decoration: none;
+    font-size: 14.5px;
+    transition: background 0.15s, color 0.15s;
+  }
+  nav.toc a:hover,
+  nav.toc a:focus-visible {
+    background: var(--surface-2);
+    color: var(--primary);
+    outline: none;
+  }
+  nav.toc .toc-num {
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    min-width: 18px;
+  }
+
+  /* SECTIONS */
+  section.tos {
+    margin-top: 36px;
+    scroll-margin-top: 20px;
+  }
+  section.tos h2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     font-size: 20px;
-    margin-top: 32px;
-    margin-bottom: 8px;
+    margin: 0 0 12px;
     color: var(--text);
+    letter-spacing: -0.01em;
   }
-  p, li { color: var(--text); }
-  ul, ol { padding-left: 22px; }
+  section.tos h2 .num {
+    flex: 0 0 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    box-shadow: 0 4px 12px rgba(14,165,233,0.30);
+  }
+  section.tos h2 .anchor {
+    margin-left: auto;
+    opacity: 0;
+    color: var(--muted);
+    font-size: 14px;
+    text-decoration: none;
+    transition: opacity 0.15s, color 0.15s;
+  }
+  section.tos h2:hover .anchor { opacity: 1; }
+  section.tos h2 .anchor:hover { color: var(--primary); }
+
+  p, li { color: var(--text-soft); }
+  p { margin: 0 0 12px; }
+  ul, ol { padding-left: 22px; margin: 0 0 14px; }
   li { margin-bottom: 6px; }
+  strong { color: var(--text); }
+  code {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    border-radius: 6px;
+    font-size: 13.5px;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  /* CALLOUT BOX */
   .note {
     background: var(--surface);
+    border: 1px solid var(--border-soft);
     border-left: 4px solid var(--primary);
-    padding: 12px 16px;
+    padding: 14px 18px;
     margin: 16px 0;
-    border-radius: 4px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
   }
+  .note.warn  { border-left-color: #F59E0B; }
+  .note.warn::before  { content: "⚠️ "; }
+  .note.legal { border-left-color: #6366F1; }
+  .note.legal::before { content: "⚖️ "; }
+  .note p:last-child { margin-bottom: 0; }
+
+  /* LINKS */
   a { color: var(--primary); text-decoration: none; }
   a:hover { text-decoration: underline; }
+  a:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* FOOTER */
   footer {
-    margin-top: 56px;
-    padding-top: 16px;
+    margin-top: 64px;
+    padding-top: 24px;
     border-top: 1px solid var(--border);
     color: var(--muted);
     font-size: 13px;
     text-align: center;
+    line-height: 1.7;
+  }
+  footer .links { margin-bottom: 8px; }
+  footer .links a { margin: 0 8px; font-weight: 700; }
+  footer .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 800;
+    color: var(--text-soft);
+    margin-bottom: 4px;
+  }
+  footer .brand .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 0 0 3px rgba(14,165,233,0.20);
+  }
+
+  /* PRINT */
+  @media print {
+    body { background: #fff; color: #000; font-size: 11pt; }
+    header.hero, nav.toc, .note { box-shadow: none; border: 1px solid #ccc; }
+    section.tos h2 .num {
+      background: #fff !important;
+      color: #000 !important;
+      border: 1px solid #000;
+      box-shadow: none;
+    }
+    section.tos h2 .anchor, .skip { display: none; }
+    a { color: #000; text-decoration: underline; }
   }
 </style>
 </head>
 <body>
+
+<a class="skip" href="#main">Lewati ke konten</a>
+
 <div class="wrap">
 
-<header>
-  <h1>Syarat &amp; Ketentuan</h1>
-  <div class="meta">Aplikasi: <strong>Utangin — Catatan Hutang &amp; Piutang</strong><br>
-    Berlaku sejak: 29 April 2026 &nbsp;·&nbsp; Versi: 1.0</div>
-</header>
+  <header class="hero">
+    <p class="kicker">Dokumen Legal</p>
+    <h1>Syarat &amp; Ketentuan</h1>
+    <div class="meta">
+      <span><strong>Utangin</strong> — Catatan Hutang &amp; Piutang</span>
+      <span>Berlaku sejak 26 Mei 2026</span>
+      <span class="pill">Versi dokumen 1.1</span>
+    </div>
+  </header>
 
-<p>Dengan mengunduh, memasang, atau menggunakan aplikasi Utangin
-("<strong>Aplikasi</strong>"), Anda setuju untuk terikat oleh syarat dan
-ketentuan berikut. Mohon baca dengan seksama. Jika Anda tidak setuju,
-mohon untuk tidak menggunakan Aplikasi.</p>
+  <p class="intro">
+    Dengan mengunduh, memasang, atau menggunakan aplikasi <strong>Utangin</strong>
+    ("<em>Aplikasi</em>"), Anda dianggap telah membaca, memahami, dan menyetujui
+    seluruh ketentuan di bawah ini. Jika Anda tidak menyetujui salah satu
+    ketentuan, mohon untuk tidak menggunakan Aplikasi dan menghapus
+    pemasangannya dari perangkat Anda.
+  </p>
 
-<h2>1. Tentang Aplikasi</h2>
-<p>Utangin adalah aplikasi pencatat hutang dan piutang pribadi yang
-disediakan secara gratis dengan iklan, dengan opsi upgrade ke versi
-Premium tanpa iklan. Aplikasi ini disediakan "sebagaimana adanya"
-("<em>as is</em>") tanpa jaminan apa pun.</p>
+  <nav class="toc" aria-label="Daftar Isi">
+    <h2>Daftar Isi</h2>
+    <ol>
+      <li><a href="#s1"><span class="toc-num">1.</span>Tentang Aplikasi</a></li>
+      <li><a href="#s2"><span class="toc-num">2.</span>Penggunaan yang Diizinkan</a></li>
+      <li><a href="#s3"><span class="toc-num">3.</span>Tanggung Jawab Pengguna &amp; Data</a></li>
+      <li><a href="#s4"><span class="toc-num">4.</span>Bukan Layanan Keuangan Formal</a></li>
+      <li><a href="#s5"><span class="toc-num">5.</span>Pembelian Premium &amp; Pembayaran</a></li>
+      <li><a href="#s6"><span class="toc-num">6.</span>Iklan &amp; Persetujuan</a></li>
+      <li><a href="#s7"><span class="toc-num">7.</span>Hak Kekayaan Intelektual</a></li>
+      <li><a href="#s8"><span class="toc-num">8.</span>Privasi &amp; Data Pribadi</a></li>
+      <li><a href="#s9"><span class="toc-num">9.</span>Pembatasan Tanggung Jawab</a></li>
+      <li><a href="#s10"><span class="toc-num">10.</span>Keadaan Memaksa (Force Majeure)</a></li>
+      <li><a href="#s11"><span class="toc-num">11.</span>Pemutusan &amp; Perubahan</a></li>
+      <li><a href="#s12"><span class="toc-num">12.</span>Hukum, Yurisdiksi &amp; Keterpisahan</a></li>
+      <li><a href="#s13"><span class="toc-num">13.</span>Kontak</a></li>
+    </ol>
+  </nav>
 
-<h2>2. Penggunaan yang Diizinkan</h2>
-<p>Anda diizinkan menggunakan Aplikasi untuk keperluan pribadi, keluarga,
-atau usaha mikro/kecil. Anda <strong>dilarang</strong>:</p>
-<ul>
-  <li>Menggunakan Aplikasi untuk aktivitas ilegal, penipuan, atau praktik
-    rentenir yang melanggar hukum di Indonesia.</li>
-  <li>Melakukan reverse engineering, dekompilasi, atau modifikasi terhadap
-    Aplikasi.</li>
-  <li>Menggunakan Aplikasi untuk mengirim spam atau pesan yang melanggar
-    Syarat WhatsApp / SMS / Email yang berlaku.</li>
-  <li>Menyimpan data orang lain tanpa persetujuan mereka, terutama nomor
-    telepon yang dilindungi oleh undang-undang perlindungan data pribadi
-    (UU PDP).</li>
-</ul>
+  <main id="main">
 
-<h2>3. Tanggung Jawab Pengguna</h2>
-<p>Seluruh data yang Anda masukkan ke Aplikasi adalah tanggung jawab Anda
-sepenuhnya. Pengembang tidak bertanggung jawab atas:</p>
-<ul>
-  <li>Akurasi catatan hutang/piutang yang Anda buat.</li>
-  <li>Sengketa antara Anda dengan pihak ketiga (debitur, kreditur).</li>
-  <li>Kehilangan data akibat gagal mencadangkan secara berkala, perangkat
-    rusak, atau uninstall aplikasi.</li>
-</ul>
+    <section class="tos" id="s1">
+      <h2><span class="num">1</span>Tentang Aplikasi <a class="anchor" href="#s1" aria-label="Tautan langsung ke bagian">¶</a></h2>
+      <p>
+        Utangin adalah aplikasi pencatat hutang dan piutang pribadi yang
+        bekerja sepenuhnya secara <strong>offline</strong>. Aplikasi disediakan
+        dengan model freemium: versi gratis menampilkan iklan, sedangkan versi
+        Premium menghilangkan iklan secara permanen. Aplikasi disediakan
+        "<em>sebagaimana adanya</em>" (<em>as is</em>) dan
+        "<em>sebagaimana tersedia</em>" (<em>as available</em>) tanpa jaminan
+        apa pun, baik tersurat maupun tersirat.
+      </p>
+      <p>
+        Aplikasi tidak ditujukan untuk anak di bawah usia 17 tahun. Dengan
+        menggunakan Aplikasi, Anda menyatakan telah berusia minimal 17 tahun
+        atau menggunakannya di bawah pengawasan orang tua/wali.
+      </p>
+    </section>
 
-<div class="note">
-  <strong>Backup data Anda secara berkala</strong> melalui menu
-  <em>Lainnya → Backup &amp; Restore</em>. Aplikasi menyimpan data lokal
-  saja; tidak ada cadangan otomatis di cloud.
-</div>
+    <section class="tos" id="s2">
+      <h2><span class="num">2</span>Penggunaan yang Diizinkan <a class="anchor" href="#s2" aria-label="Tautan langsung ke bagian">¶</a></h2>
+      <p>
+        Anda diizinkan menggunakan Aplikasi untuk keperluan pribadi,
+        keluarga, atau usaha mikro/kecil. Anda <strong>dilarang</strong>:
+      </p>
+      <ul>
+        <li>Menggunakan Aplikasi untuk aktivitas ilegal, penipuan, pencucian
+          uang, atau praktik rentenir yang melanggar hukum Republik
+          Indonesia.</li>
+        <li>Melakukan reverse engineering, dekompilasi, modifikasi, atau
+          mendistribusikan ulang Aplikasi tanpa izin tertulis dari
+          pengembang.</li>
+        <li>Menggunakan Aplikasi untuk mengirim pesan spam, ancaman, atau
+          intimidasi kepada pihak ketiga melalui WhatsApp, SMS, email,
+          telepon, atau saluran lain.</li>
+        <li>Menyimpan data orang lain (nama, nomor telepon, foto, alamat,
+          dsb.) tanpa persetujuan yang sah dari pemilik data, sebagaimana
+          diatur dalam <strong>Undang-Undang Pelindungan Data Pribadi
+          (UU&nbsp;PDP) No.&nbsp;27/2022</strong>.</li>
+        <li>Menggunakan Aplikasi pada perangkat yang sudah di-root,
+          di-jailbreak, atau dimodifikasi sedemikian rupa sehingga merusak
+          mekanisme keamanan platform.</li>
+      </ul>
+    </section>
 
-<h2>4. Pembelian Premium</h2>
-<p>Pembelian Utangin Premium diproses oleh Google Play. Setelah pembayaran
-berhasil:</p>
-<ul>
-  <li>Iklan akan dihilangkan secara permanen dari aplikasi.</li>
-  <li>Pembelian berlaku selamanya untuk akun Google Play yang sama
-    ("<em>lifetime / sekali bayar</em>").</li>
-  <li>Anda dapat memulihkan pembelian di perangkat lain melalui tombol
-    "Restore" pada halaman Premium.</li>
-</ul>
-<p><strong>Refund:</strong> kebijakan refund mengikuti
-<a href="https://support.google.com/googleplay/answer/2479637" target="_blank">
-ketentuan refund Google Play</a>. Pengembang tidak memproses refund
-secara langsung.</p>
+    <section class="tos" id="s3">
+      <h2><span class="num">3</span>Tanggung Jawab Pengguna &amp; Data <a class="anchor" href="#s3" aria-label="Tautan langsung ke bagian">¶</a></h2>
+      <p>
+        Seluruh data yang Anda masukkan ke dalam Aplikasi adalah tanggung
+        jawab Anda sepenuhnya. Pengembang tidak bertanggung jawab atas:
+      </p>
+      <ul>
+        <li>Akurasi catatan hutang/piutang, perhitungan bunga, denda, atau
+          jumlah cicilan yang Anda input.</li>
+        <li>Sengketa antara Anda dengan pihak ketiga (debitur, kreditur,
+          atau pihak lain yang Anda catat).</li>
+        <li>Kehilangan data akibat gagal mencadangkan, perangkat rusak,
+          hilang, terformat, atau Aplikasi di-uninstall.</li>
+        <li>Penyalahgunaan data yang Anda simpan oleh orang lain yang
+          memiliki akses fisik ke perangkat Anda.</li>
+      </ul>
+      <div class="note warn">
+        <strong>Backup data Anda secara berkala</strong> melalui menu
+        <em>Lainnya → Backup &amp; Restore</em>. Aplikasi menyimpan data
+        lokal saja — <em>tidak ada cadangan otomatis di cloud</em>. Simpan
+        file backup di tempat aman (Drive, Email, atau media eksternal).
+      </div>
+    </section>
 
-<h2>5. Iklan</h2>
-<p>Versi gratis menampilkan iklan dari Google AdMob. Anda menyetujui bahwa
-Google AdMob dapat menampilkan iklan personal atau non-personal sesuai
-pilihan Anda saat persetujuan iklan ditampilkan.</p>
+    <section class="tos" id="s4">
+      <h2><span class="num">4</span>Bukan Layanan Keuangan Formal <a class="anchor" href="#s4" aria-label="Tautan langsung ke bagian">¶</a></h2>
+      <div class="note legal">
+        <p>
+          Utangin <strong>BUKAN</strong> lembaga jasa keuangan, perbankan,
+          pegadaian, penyelenggara pinjam-meminjam (P2P&nbsp;lending), atau
+          penyelenggara payment gateway. Aplikasi <strong>tidak</strong>
+          terdaftar dan <strong>tidak</strong> diawasi oleh Otoritas Jasa
+          Keuangan (OJK) maupun Bank Indonesia (BI), dan memang tidak wajib
+          terdaftar karena bukan menyelenggarakan layanan jasa keuangan.
+        </p>
+      </div>
+      <p>
+        Aplikasi hanya berfungsi sebagai <strong>alat bantu pencatatan
+        pribadi</strong> (<em>personal bookkeeping</em>). Aplikasi tidak
+        menyalurkan dana, tidak memfasilitasi transaksi pinjaman, tidak
+        menarik bunga, tidak melakukan penagihan, dan tidak menerbitkan
+        produk keuangan apa pun. Seluruh transaksi yang dicatat adalah
+        kesepakatan pribadi antara Anda dengan pihak ketiga di luar
+        Aplikasi.
+      </p>
+    </section>
 
-<h2>6. Privasi</h2>
-<p>Penggunaan Aplikasi diatur juga oleh
-<a href="privacy.html">Kebijakan Privasi</a> kami. Mohon baca halaman
-tersebut untuk mengetahui detail bagaimana data Anda diperlakukan.</p>
+    <section class="tos" id="s5">
+      <h2><span class="num">5</span>Pembelian Premium &amp; Pembayaran <a class="anchor" href="#s5" aria-label="Tautan langsung ke bagian">¶</a></h2>
+      <p>
+        Pembelian Utangin Premium diproses sepenuhnya oleh
+        <strong>Google Play Billing</strong>. Pengembang tidak menerima,
+        menyimpan, atau memproses data kartu kredit/rekening bank Anda.
+      </p>
+      <ul>
+        <li><strong>Jenis produk:</strong> <code>utangin_remove_ads</code> —
+          pembelian satu kali (<em>lifetime</em>), bukan langganan.</li>
+        <li><strong>Manfaat:</strong> iklan dihilangkan secara permanen
+          pada akun Google yang sama, di semua perangkat yang masuk dengan
+          akun tersebut.</li>
+        <li><strong>Pemulihan pembelian:</strong> gunakan tombol
+          <em>"Restore"</em> di halaman Premium setelah masuk dengan akun
+          Google yang sama dengan saat pembelian.</li>
+        <li><strong>Harga:</strong> ditampilkan dalam Rupiah sesuai
+          penetapan di Google Play Console dan dapat berubah sewaktu-waktu
+          untuk transaksi mendatang (pembelian yang sudah berhasil tetap
+          aktif).</li>
+      </ul>
+      <p>
+        <strong>Refund:</strong> kebijakan pengembalian dana mengikuti
+        <a href="https://support.google.com/googleplay/answer/2479637"
+           target="_blank" rel="noopener">ketentuan refund resmi Google
+        Play</a>. Pengembang tidak memproses refund secara langsung dan
+        tidak dapat membatalkan transaksi yang sudah dieksekusi Google.
+      </p>
+    </section>
 
-<h2>7. Pembatasan Tanggung Jawab</h2>
-<p>Sejauh diperbolehkan oleh hukum yang berlaku, pengembang
-<strong>tidak</strong> bertanggung jawab atas:</p>
-<ul>
-  <li>Kerugian finansial langsung atau tidak langsung akibat penggunaan
-    Aplikasi.</li>
-  <li>Kehilangan data, profit, atau peluang bisnis.</li>
-  <li>Gangguan layanan iklan, layanan pembayaran, atau layanan pihak ketiga
-    lainnya.</li>
-</ul>
+    <section class="tos" id="s6">
+      <h2><span class="num">6</span>Iklan &amp; Persetujuan <a class="anchor" href="#s6" aria-label="Tautan langsung ke bagian">¶</a></h2>
+      <p>
+        Versi gratis Aplikasi menampilkan iklan dari <strong>Google
+        AdMob</strong>. Iklan dapat berupa <em>banner</em>,
+        <em>interstitial</em> (layar penuh), atau <em>app open</em> (saat
+        kembali ke aplikasi). Untuk pengguna di wilayah EEA/UK, Aplikasi
+        menampilkan dialog persetujuan iklan
+        (<em>User Messaging Platform</em>) sebelum iklan personal
+        ditayangkan.
+      </p>
+      <p>
+        Anda dapat menonaktifkan iklan personal kapan saja melalui pengaturan
+        Android: <em>Setelan → Google → Iklan → Hapus iklan
+        personal</em>, atau membeli versi Premium untuk menghilangkan
+        seluruh iklan secara permanen.
+      </p>
+    </section>
 
-<h2>8. Pemutusan</h2>
-<p>Pengembang berhak menghentikan layanan Aplikasi sewaktu-waktu. Jika
-layanan dihentikan, Anda tetap dapat menggunakan versi Aplikasi yang
-sudah terpasang di perangkat selama tidak ada masalah teknis dari sistem
-operasi Android.</p>
+    <section class="tos" id="s7">
+      <h2><span class="num">7</span>Hak Kekayaan Intelektual <a class="anchor" href="#s7" aria-label="Tautan langsung ke bagian">¶</a></h2>
+      <p>
+        Seluruh kekayaan intelektual atas Aplikasi — termasuk nama, logo,
+        ikon, gambar, antarmuka, kode sumber, dan konten yang disediakan
+        pengembang — adalah milik eksklusif pengembang Utangin dan
+        dilindungi oleh hukum hak cipta dan merek yang berlaku.
+      </p>
+      <p>
+        Aplikasi memberi Anda lisensi terbatas, non-eksklusif,
+        non-transferable, dan dapat dicabut, semata-mata untuk penggunaan
+        pribadi sesuai Syarat ini. Anda <strong>tidak</strong> diberi hak
+        untuk menjual, menyewakan, men-sublisensikan, atau menampilkan
+        Aplikasi secara komersial.
+      </p>
+      <p>
+        Data <em>yang Anda input</em> ke dalam Aplikasi tetap menjadi milik
+        Anda sepenuhnya. Pengembang tidak mengklaim kepemilikan atas
+        catatan keuangan pribadi Anda.
+      </p>
+    </section>
 
-<h2>9. Perubahan Syarat</h2>
-<p>Syarat &amp; Ketentuan ini dapat diperbarui sewaktu-waktu. Perubahan
-material akan diberitahukan melalui notifikasi di aplikasi atau halaman
-ini. Penggunaan Aplikasi setelah perubahan dianggap sebagai persetujuan
-terhadap syarat yang baru.</p>
+    <section class="tos" id="s8">
+      <h2><span class="num">8</span>Privasi &amp; Data Pribadi <a class="anchor" href="#s8" aria-label="Tautan langsung ke bagian">¶</a></h2>
+      <p>
+        Penggunaan Aplikasi tunduk pada
+        <a href="privacy.html">Kebijakan Privasi</a> kami. Singkatnya:
+        seluruh data keuangan, kontak, foto, dan catatan disimpan
+        <strong>hanya di perangkat Anda</strong>. Pengembang tidak memiliki
+        server dan tidak mengumpulkan data finansial Anda. Pengumpulan data
+        terbatas hanya dilakukan oleh layanan pihak ketiga yang
+        terintegrasi (AdMob, Google Play Billing) sesuai kebijakan mereka
+        masing-masing.
+      </p>
+    </section>
 
-<h2>10. Hukum yang Berlaku</h2>
-<p>Syarat &amp; Ketentuan ini tunduk pada hukum Republik Indonesia. Setiap
-sengketa yang timbul akan diselesaikan secara musyawarah; jika tidak
-tercapai, akan diselesaikan melalui pengadilan yang berwenang di
-Indonesia.</p>
+    <section class="tos" id="s9">
+      <h2><span class="num">9</span>Pembatasan Tanggung Jawab <a class="anchor" href="#s9" aria-label="Tautan langsung ke bagian">¶</a></h2>
+      <p>
+        Sejauh diperbolehkan oleh hukum yang berlaku, pengembang
+        <strong>tidak</strong> bertanggung jawab atas:
+      </p>
+      <ul>
+        <li>Kerugian finansial langsung maupun tidak langsung yang timbul
+          dari penggunaan, ketidakmampuan menggunakan, atau ketergantungan
+          pada Aplikasi.</li>
+        <li>Kehilangan keuntungan, peluang bisnis, reputasi, atau data —
+          baik akibat kelalaian, gangguan layanan, maupun kegagalan
+          perangkat keras/lunak.</li>
+        <li>Gangguan, penundaan, atau kegagalan pada layanan pihak ketiga
+          (Google Play, AdMob, sistem operasi Android) yang berada di luar
+          kendali pengembang.</li>
+        <li>Tindakan, kelalaian, atau pelanggaran hukum yang dilakukan
+          pengguna lain.</li>
+      </ul>
+      <p>
+        Total tanggung jawab pengembang dalam keadaan apa pun tidak akan
+        melebihi jumlah yang Anda bayarkan untuk Aplikasi dalam 12 bulan
+        terakhir, atau Rp 0 jika Anda menggunakan versi gratis.
+      </p>
+    </section>
 
-<h2>11. Kontak</h2>
-<p>Pertanyaan terkait syarat ini dapat ditujukan ke
-<a href="mailto:khaerul0210@gmail.com">khaerul0210@gmail.com</a>.</p>
+    <section class="tos" id="s10">
+      <h2><span class="num">10</span>Keadaan Memaksa (Force Majeure) <a class="anchor" href="#s10" aria-label="Tautan langsung ke bagian">¶</a></h2>
+      <p>
+        Pengembang tidak bertanggung jawab atas keterlambatan atau
+        kegagalan dalam menyediakan layanan yang diakibatkan oleh keadaan
+        di luar kendali wajar, termasuk namun tidak terbatas pada: bencana
+        alam, pandemi, gangguan jaringan internet, pemadaman listrik,
+        kebijakan pemerintah, perubahan kebijakan Google Play, peretasan
+        atau serangan siber pada infrastruktur pihak ketiga, dan keadaan
+        memaksa lainnya yang lazim diakui dalam hukum Indonesia.
+      </p>
+    </section>
 
-<footer>
-  © 2026 Utangin. Hak cipta dilindungi.
-  &nbsp;·&nbsp;
-  <a href="privacy.html">Kebijakan Privasi</a>
-</footer>
+    <section class="tos" id="s11">
+      <h2><span class="num">11</span>Pemutusan &amp; Perubahan <a class="anchor" href="#s11" aria-label="Tautan langsung ke bagian">¶</a></h2>
+      <p>
+        <strong>Pemutusan oleh pengembang.</strong> Pengembang berhak
+        menghentikan, menangguhkan, atau menarik Aplikasi dari peredaran
+        sewaktu-waktu, dengan atau tanpa pemberitahuan terlebih dahulu.
+        Jika Aplikasi ditarik, Anda tetap dapat menggunakan versi yang
+        sudah terpasang selama kompatibel dengan sistem operasi Anda.
+      </p>
+      <p>
+        <strong>Pemutusan oleh Anda.</strong> Anda dapat berhenti
+        menggunakan Aplikasi kapan saja dengan menghapus instalasi dan
+        seluruh data lokal melalui menu <em>Setelan → Hapus Semua
+        Data</em>.
+      </p>
+      <p>
+        <strong>Perubahan syarat.</strong> Syarat &amp; Ketentuan ini dapat
+        diperbarui sewaktu-waktu. Untuk perubahan material, pengembang akan
+        memberitahukan melalui notifikasi di Aplikasi, halaman ini, atau
+        toko aplikasi. Penggunaan Aplikasi setelah pembaruan dianggap
+        sebagai persetujuan terhadap syarat yang baru.
+      </p>
+    </section>
+
+    <section class="tos" id="s12">
+      <h2><span class="num">12</span>Hukum, Yurisdiksi &amp; Keterpisahan <a class="anchor" href="#s12" aria-label="Tautan langsung ke bagian">¶</a></h2>
+      <p>
+        <strong>Hukum yang berlaku.</strong> Syarat &amp; Ketentuan ini
+        tunduk dan ditafsirkan berdasarkan hukum Republik Indonesia,
+        termasuk namun tidak terbatas pada UU ITE, UU PDP, dan KUH
+        Perdata.
+      </p>
+      <p>
+        <strong>Yurisdiksi.</strong> Setiap sengketa yang timbul dari atau
+        sehubungan dengan Aplikasi akan diselesaikan terlebih dahulu
+        secara musyawarah. Jika musyawarah tidak tercapai dalam 30 hari
+        kalender, sengketa akan diselesaikan melalui Pengadilan Negeri yang
+        memiliki yurisdiksi di Indonesia.
+      </p>
+      <p>
+        <strong>Keterpisahan ketentuan (severability).</strong> Jika salah
+        satu ketentuan dalam Syarat ini dinyatakan tidak sah, batal, atau
+        tidak dapat dilaksanakan oleh putusan pengadilan yang berkekuatan
+        hukum tetap, ketentuan lainnya tetap berlaku penuh.
+      </p>
+      <p>
+        <strong>Keseluruhan perjanjian.</strong> Syarat ini, bersama dengan
+        <a href="privacy.html">Kebijakan Privasi</a>, merupakan keseluruhan
+        perjanjian antara Anda dengan pengembang sehubungan dengan
+        penggunaan Aplikasi, dan menggantikan kesepakatan sebelumnya yang
+        pernah ada.
+      </p>
+    </section>
+
+    <section class="tos" id="s13">
+      <h2><span class="num">13</span>Kontak <a class="anchor" href="#s13" aria-label="Tautan langsung ke bagian">¶</a></h2>
+      <p>
+        Pertanyaan, masukan, atau klaim hukum dapat dikirim ke:
+      </p>
+      <ul>
+        <li>Email: <a href="mailto:khaerul0210@gmail.com">khaerul0210@gmail.com</a></li>
+        <li>Subjek email mohon diawali <code>[Utangin]</code> agar dapat
+          diproses lebih cepat.</li>
+      </ul>
+      <p>
+        Kami akan berupaya membalas dalam <strong>3–5 hari kerja</strong>.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="brand"><span class="dot"></span>Utangin</div>
+    <div class="links">
+      <a href="index.html">Beranda</a>·
+      <a href="privacy.html">Kebijakan Privasi</a>·
+      <a href="#main">Ke Atas ↑</a>
+    </div>
+    © 2026 Utangin. Hak cipta dilindungi.
+  </footer>
 
 </div>
 </body>
