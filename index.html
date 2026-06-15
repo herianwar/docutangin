@@ -1,17 +1,168 @@
 <!DOCTYPE html>
+
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DocuTangin Legal</title>
 
-    <title>DocuTangin</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <script>
-        // Redirect otomatis ke Privacy Policy
-        window.location.href = "https://herianwar.github.io/docutangin/privacy.html";
-    </script>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    color:#fff;
+    padding:20px;
+}
+
+.container{
+    width:100%;
+    max-width:500px;
+}
+
+.card{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:28px;
+    padding:40px 30px;
+    text-align:center;
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+}
+
+.logo{
+    width:80px;
+    height:80px;
+    margin:auto;
+    margin-bottom:20px;
+    border-radius:20px;
+    background:linear-gradient(135deg,#3b82f6,#06b6d4);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:36px;
+}
+
+h1{
+    font-size:32px;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    color:#cbd5e1;
+    margin-bottom:35px;
+    line-height:1.6;
+}
+
+.button{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    text-decoration:none;
+    color:#fff;
+    padding:18px 20px;
+    border-radius:18px;
+    margin-bottom:15px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.1);
+    transition:.25s;
+}
+
+.button:hover{
+    transform:translateY(-3px);
+    background:rgba(255,255,255,0.15);
+}
+
+.button-left{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.icon{
+    font-size:24px;
+}
+
+.title{
+    font-weight:600;
+    text-align:left;
+}
+
+.desc{
+    font-size:13px;
+    color:#cbd5e1;
+    margin-top:2px;
+}
+
+.arrow{
+    font-size:20px;
+}
+
+.footer{
+    margin-top:25px;
+    font-size:13px;
+    color:#94a3b8;
+}
+</style>
+
 </head>
+
 <body>
-    <p>Mengalihkan ke halaman Privacy Policy...</p>
+
+<div class="container">
+    <div class="card">
+
+```
+    <div class="logo">📄</div>
+
+    <h1>DocuTangin</h1>
+
+    <p class="subtitle">
+        Legal documents and policies for the DocuTangin application.
+    </p>
+
+    <a class="button" href="privacy.html">
+        <div class="button-left">
+            <div class="icon">🔒</div>
+            <div>
+                <div class="title">Privacy Policy</div>
+                <div class="desc">View privacy and data usage information</div>
+            </div>
+        </div>
+        <div class="arrow">→</div>
+    </a>
+
+    <a class="button" href="terms.html">
+        <div class="button-left">
+            <div class="icon">📋</div>
+            <div>
+                <div class="title">Terms & Conditions</div>
+                <div class="desc">Read the application usage terms</div>
+            </div>
+        </div>
+        <div class="arrow">→</div>
+    </a>
+
+    <div class="footer">
+        © 2026 DocuTangin. All rights reserved.
+    </div>
+
+</div>
+```
+
+</div>
+
 </body>
 </html>
