@@ -399,8 +399,8 @@
     <h1>Kebijakan Privasi</h1>
     <div class="meta">
       <span><strong>Utangin</strong> — Catatan Hutang &amp; Piutang</span>
-      <span>Berlaku sejak 26 Mei 2026</span>
-      <span class="pill">Versi dokumen 1.1</span>
+      <span>Berlaku sejak 23 Juni 2026</span>
+      <span class="pill">Versi dokumen 1.2</span>
     </div>
   </header>
 
@@ -428,9 +428,10 @@
     </div>
     <div class="tldr-card">
       <div class="icon">📢</div>
-      <strong>Hanya Iklan AdMob</strong>
-      <p>Pihak ketiga yang mengakses data hanyalah Google AdMob
-        (Advertising ID + lokasi perkiraan dari IP).</p>
+      <strong>Hanya Layanan Google</strong>
+      <p>Pihak ketiga yang mengakses data hanyalah layanan Google: AdMob
+        (iklan) serta Firebase Crashlytics &amp; Analytics (deteksi crash
+        &amp; statistik pemakaian). Isi catatan keuangan Anda tidak dikirim.</p>
     </div>
     <div class="tldr-card">
       <div class="icon">🗑️</div>
@@ -521,14 +522,30 @@
             <td>Riwayat pembelian, status entitlement</td>
             <td>Memproses pembelian Premium</td>
           </tr>
+          <tr>
+            <td><strong>Firebase Crashlytics</strong></td>
+            <td>Laporan crash &amp; error: jenis kesalahan, stack trace,
+              versi aplikasi, model perangkat, versi Android, ID instalasi
+              aplikasi</td>
+            <td>Mendeteksi &amp; memperbaiki crash agar aplikasi lebih stabil</td>
+          </tr>
+          <tr>
+            <td><strong>Firebase Analytics</strong></td>
+            <td>Peristiwa pemakaian (layar yang dibuka, fitur yang dipakai),
+              perkiraan lokasi (negara), tipe perangkat, ID instalasi aplikasi
+              &amp; Advertising ID</td>
+            <td>Memahami pemakaian fitur untuk pengembangan aplikasi</td>
+          </tr>
         </tbody>
       </table>
       <p>
-        Aplikasi <strong>tidak</strong> menggunakan layanan analytics
-        (Firebase Analytics, Mixpanel, dll.) maupun layanan crash reporting
-        (Crashlytics, Sentry). Kami tidak mengetahui apa pun tentang
-        bagaimana Anda menggunakan aplikasi di luar yang dikumpulkan AdMob
-        untuk iklan.
+        Layanan crash reporting &amp; analitik di atas (Firebase) hanya
+        mengumpulkan data <strong>diagnostik dan agregat</strong> — bukan isi
+        catatan keuangan Anda. <strong>Nominal hutang/piutang, nama &amp;
+        nomor kontak, foto lampiran, catatan, dan PIN tidak pernah dikirim</strong>
+        ke Firebase maupun pihak ketiga mana pun; semuanya tetap di perangkat.
+        Pemrosesan data oleh Firebase tunduk pada
+        <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Kebijakan Privasi Firebase</a>.
       </p>
     </section>
 
@@ -730,8 +747,8 @@
         <li><strong>App-private storage</strong> — foto lampiran disimpan
           di direktori privat aplikasi yang tidak bisa diakses aplikasi
           lain tanpa root.</li>
-        <li><strong>HTTPS</strong> — komunikasi dengan Google AdMob &amp;
-          Play Billing menggunakan TLS terenkripsi.</li>
+        <li><strong>HTTPS</strong> — komunikasi dengan Google AdMob, Firebase
+          &amp; Play Billing menggunakan TLS terenkripsi.</li>
         <li><strong>R8 / ProGuard</strong> — kode aplikasi dikaburkan di
           build release agar lebih sulit di-reverse engineer.</li>
       </ul>
